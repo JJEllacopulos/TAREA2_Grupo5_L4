@@ -101,6 +101,22 @@ public static boolean validarDNI (int dni) throws ExcepcionDNI
 		return false;
 			
 	}
+
+	public boolean Escribir(String linea) {
+	FileWriter escritura;
+	try {
+	escritura= new FileWriter(ruta,true);
+	BufferedWriter bufferW= new BufferedWriter(escritura);
+	bufferW.write(linea);
+	bufferW.close();
+	escritura.close();
+	return true;
+	}
+	catch(IOException e) {
+	e.printStackTrace();
+	}
+	return false;
+	}
 	
 	public void leerarchivo() {
 		FileReader lectura;

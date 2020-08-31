@@ -17,10 +17,7 @@ public class Principal {
 		Persona archivo2= new Persona();
 		archivo2.setRuta("Resultado.txt");
 		
-		if(archivo2.existe())
-		{
-		}
-		else
+		if(!archivo2.existe())
 		{
 			archivo2.creararchivonuevo();
 		}
@@ -32,6 +29,7 @@ public class Principal {
 		try
 		{
 	    Persona.validarDNI(a1.getDni());
+	    
 		}
 		catch(ExcepcionDNI e)
 		{
