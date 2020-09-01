@@ -52,12 +52,12 @@ public class Principal {
 		a1.setDni(12345678);
 		try
 		{
-	    Persona.validarDNI(a1.getDni());
-	    
+			Persona.validarDNI(a1.getDni());
 		}
 		catch(ExcepcionDNI e)
 		{
 			e.printStackTrace();
-		}			
+		}	
+		
 	}
 }

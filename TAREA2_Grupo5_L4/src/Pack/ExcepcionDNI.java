@@ -6,6 +6,7 @@ public class ExcepcionDNI extends RuntimeException  {
 	public String getMessage() {
 		
 		return " EL DNI DEBE TENER 8 DIGITOS ";
+		
 	}
 
 	
