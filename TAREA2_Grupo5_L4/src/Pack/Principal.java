@@ -30,12 +30,9 @@ public class Principal {
 		}
 		//Ordeno alfabeticamente
 		Collections.sort(listarray, (x, y) -> comparador.compare(x.getNombre(), y.getNombre()));
-		for(Persona e:listarray)
-		{
-			
-		System.out.println(e.getNombre()+" "+e.getDni());
-		}
+		Collections.reverse(listarray);
 		
+
 		Persona archivo2= new Persona();
 		archivo2.setRuta("Resultado.txt");
 		
@@ -44,6 +41,11 @@ public class Principal {
 			archivo2.creararchivonuevo();
 		}
 		
+		for(Persona e:listarray)
+		{
+			archivo2.Escribir(e.getNombre()+", "+e.getApellido()+" "+e.getDni()+"\n");
+		
+		}
 		//comprobar que funcione el Validador de dni
 		
 		Persona a1= new Persona();
