@@ -1,18 +1,40 @@
 package Pack;
 
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
-
-import javax.swing.JOptionPane;
+import java.util.TreeSet;
 
 public class Principal {
 
+	@SuppressWarnings("null")
 	public static void main(String[] args) {
 		
+		Collator comparador = Collator.getInstance();
+		comparador.setStrength(Collator.PRIMARY);
 		Persona archivo= new Persona();
+		TreeSet<Persona>lista=new TreeSet<Persona>();
 		archivo.setRuta("PersonasEmpresa.txt");
-		
+		ArrayList<Persona> listarray= new ArrayList();
 		System.out.println(" ARCHIVO PERSONASEMPRESA : ");
-		archivo.leerarchivo();		
+		
+		//Guardo la lista treeSet sin duplicados 
+		lista=archivo.Leer();
+		
+		//Convieto la lista treeset a ArrayList
+		for(Persona e:lista)
+		{
+			listarray.add(e);
+	
+		}
+		//Ordeno alfabeticamente
+		Collections.sort(listarray, (x, y) -> comparador.compare(x.getNombre(), y.getNombre()));
+		for(Persona e:listarray)
+		{
+			
+		System.out.println(e.getNombre()+" "+e.getDni());
+		}
 		
 		Persona archivo2= new Persona();
 		archivo2.setRuta("Resultado.txt");
@@ -34,15 +56,6 @@ public class Principal {
 		catch(ExcepcionDNI e)
 		{
 			e.printStackTrace();
-		}
-		
-		
-		
-		
-		
-		
-		
+		}			
 	}
-	
-	
 }

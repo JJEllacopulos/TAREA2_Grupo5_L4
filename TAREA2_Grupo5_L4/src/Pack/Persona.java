@@ -1,6 +1,8 @@
 package Pack;
 import java.io.*;
-public class Persona {
+import java.util.ArrayList;
+import java.util.TreeSet;
+public class Persona implements Comparable<Persona>{
 	
 	int dni;
 	String nombre;
@@ -118,24 +120,34 @@ public static boolean validarDNI (int dni) throws ExcepcionDNI
 	return false;
 	}
 	
-	public void leerarchivo() {
-		FileReader lectura;
+	public TreeSet<Persona> Leer() {
+		FileReader entrada;
+		TreeSet<Persona>listaTreeSet= new TreeSet<Persona>();
+		String [] listaPersona;
+		ArrayList<Persona> lista = new ArrayList<Persona>();
 		try {
-			lectura = new FileReader(ruta);
-			BufferedReader miBuffer = new BufferedReader(lectura);
-			
-		   String linea = "";
-			while (linea != null) {
-				System.out.println(linea);
-				linea = miBuffer.readLine();
-			}
-			miBuffer.close();
-			lectura.close();
-
-		} catch (IOException e) {
-			System.out.println("No se encontro el archivo");
+		entrada= new FileReader(ruta);
+		BufferedReader buffer= new BufferedReader(entrada);
+		String linea= null;
+		while((linea = buffer.readLine())!= null)
+		{
+		Persona personita= new Persona();
+		listaPersona= linea.split("-");
+		personita.setNombre(listaPersona[0]);
+		personita.setApellido(listaPersona[1]);
+		personita.setDni(Integer.parseInt(listaPersona[2]));
+		lista.add(personita);
 		}
-	}
+		buffer.close();
+		entrada.close();
+		}
+		catch(IOException e)
+		{
+		e.printStackTrace();
+		}
+		listaTreeSet.addAll(lista);
+		return listaTreeSet;
+		}
 
 	@Override
 	public int hashCode() {
@@ -169,6 +181,17 @@ public static boolean validarDNI (int dni) throws ExcepcionDNI
 		} else if (!nombre.equals(other.nombre))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Persona o) {
+		
+		
+		if(o.dni==this.dni)
+			return 0;
+			if(o.dni < this.dni)
+			return 1;
+			return -1;
 	}
 	
 	
