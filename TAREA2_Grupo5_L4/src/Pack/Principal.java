@@ -14,13 +14,14 @@ public class Principal {
 		Collator comparador = Collator.getInstance();
 		comparador.setStrength(Collator.PRIMARY);
 		Persona archivo= new Persona();
+		Archivo arch = new Archivo();
 		TreeSet<Persona>lista=new TreeSet<Persona>();
-		archivo.setRuta("PersonasEmpresa.txt");
+		arch.setRuta("PersonasEmpresa.txt");
 		ArrayList<Persona> listarray= new ArrayList();
 		System.out.println(" ARCHIVO PERSONASEMPRESA : ");
 		
 		//Guardo la lista treeSet sin duplicados 
-		lista=archivo.Leer();
+		lista=arch.Leer();
 		
 		//Convieto la lista treeset a ArrayList
 		for(Persona e:lista)
@@ -34,21 +35,25 @@ public class Principal {
 		
 
 		Persona archivo2= new Persona();
-		archivo2.setRuta("Resultado.txt");
+		Archivo arch2 = new Archivo();
 		
-		if(!archivo2.existe())
+		arch2.setRuta("Resultado.txt");
+		
+		if(!arch2.existe())
 		{
-			archivo2.creararchivonuevo();
+			arch2.creararchivonuevo();
 		}
 		
 		for(Persona e:listarray)
 		{
-			archivo2.Escribir(e.getNombre()+", "+e.getApellido()+" "+e.getDni()+"\n");
+			arch2.Escribir(e.getNombre()+", "+e.getApellido()+" "+e.getDni()+"\n");
 		
 		}
 		//comprobar que funcione el Validador de dni
 		
 		Persona a1= new Persona();
+		
+		
 		a1.setDni(12345678);
 		try
 		{
