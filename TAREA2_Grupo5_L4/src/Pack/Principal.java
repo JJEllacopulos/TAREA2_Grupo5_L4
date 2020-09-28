@@ -16,9 +16,11 @@ public class Principal {
 		Persona archivo= new Persona();
 		Archivo arch = new Archivo();
 		TreeSet<Persona>lista=new TreeSet<Persona>();
-		arch.setRuta("PersonasEmpresa.txt");
+		arch.setRuta("../PersonasEmpresa.txt");
+		System.out.println("Archivo PersonasEmpresas ordenado\n");
+		
 		ArrayList<Persona> listarray= new ArrayList();
-		System.out.println(" ARCHIVO PERSONASEMPRESA : ");
+		
 		
 		//Guardo la lista treeSet sin duplicados 
 		lista=arch.Leer();
@@ -47,22 +49,10 @@ public class Principal {
 		for(Persona e:listarray)
 		{
 			arch2.Escribir(e.getNombre()+", "+e.getApellido()+" "+e.getDni()+"\n");
+			System.out.println(e.getNombre()+", "+e.getApellido()+" "+e.getDni()+"\n");
 		
 		}
 		//comprobar que funcione el Validador de dni
-		
-		Persona a1= new Persona();
-		
-		
-		a1.setDni(12345678);
-		try
-		{
-			Persona.validarDNI(a1.getDni());
-		}
-		catch(ExcepcionDNI e)
-		{
-			e.printStackTrace();
-		}	
 		
 	}
 }

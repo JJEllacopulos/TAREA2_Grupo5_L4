@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
+
+
 public class Archivo {
 	
 	private String ruta;
@@ -82,10 +84,17 @@ public class Archivo {
 			{
 				Persona personita= new Persona();
 				listaPersona= linea.split("-");
+				try {
+				personita.validarDNI(Integer.parseInt(listaPersona[2]));
+					
 				personita.setNombre(listaPersona[0]);
 				personita.setApellido(listaPersona[1]);
 				personita.setDni(Integer.parseInt(listaPersona[2]));
 				lista.add(personita);
+				}
+				catch(ExcepcionDNI e){
+					e.getMessage();
+				}
 			}
 			
 			buffer.close();
